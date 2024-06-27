@@ -5,6 +5,7 @@ let display = document.querySelector('.display');
 
 function populateDisplay(content) {
     display.textContent = content;
+
 }
 
 function addEventListeners() {
@@ -24,7 +25,7 @@ function addEventListeners() {
 
     //clear event listener
     let clear = document.querySelector('.clear');
-    clear.addEventListener('click', () => populateDisplay(''));
+    clear.addEventListener('click', () => populateDisplay('0'));
 
 }
 

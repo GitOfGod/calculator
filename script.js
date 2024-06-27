@@ -25,6 +25,10 @@ function addEventListeners() {
         });
     })
 
+    //equals event listener
+    let equals = document.querySelector('#equals');
+    equals.addEventListener('click', () => operate());
+
     //clear event listener
     let clear = document.querySelector('.clear');
     clear.addEventListener('click', () => populateDisplay('0'));

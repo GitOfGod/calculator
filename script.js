@@ -1,6 +1,6 @@
 let firstNumber;
 let secondNumber;
-let operator;
+let currentOperator;
 let display = document.querySelector('.display');
 
 function populateDisplay(content) {
@@ -17,7 +17,9 @@ function addEventListeners() {
     //operator event listeners
     let operators = document.querySelectorAll('.operator');
     operators.forEach(operator => {
-        operator.addEventListener('click', () => populateDisplay(operator.textContent));
+        operator.addEventListener('click', () => {
+            currentOperator = operator.textContent;
+        });
     })
 
     //clear event listener
@@ -42,9 +44,9 @@ function divide(a, b) {
     return a / b;
 }
 
-function operate(firstNumber, secondNumber, operator) {
+function operate(firstNumber, secondNumber, currentOperator) {
     let answer;
-    switch(operator) {
+    switch(currentOperator) {
         case '+':
             answer = add(firstNumber, secondNumber);
             break;

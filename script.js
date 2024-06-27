@@ -1,11 +1,13 @@
-let firstNumber;
-let secondNumber;
+let firstNumber = 0;
+let secondNumber = 0;
 let currentOperator;
 let display = document.querySelector('.display');
+let displayValue ='';
 
 function populateDisplay(content) {
-    display.textContent = content;
-
+    displayValue = displayValue + content;
+    display.textContent = displayValue;
+    //checkCalulationStatus();
 }
 
 function addEventListeners() {

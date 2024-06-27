@@ -1,8 +1,12 @@
 let firstNumber = 0;
 let secondNumber = 0;
 let currentOperator;
-let display = document.querySelector('.display');
+let answer;
 let displayValue ='';
+let operators = document.querySelectorAll('.operator');
+let display = document.querySelector('.display');
+
+
 
 function populateDisplay(content) {
     displayValue = displayValue + content;
@@ -18,12 +22,26 @@ function addEventListeners() {
     })
 
     //operator event listeners
-    let operators = document.querySelectorAll('.operator');
     operators.forEach(operator => {
-        operator.addEventListener('click', () => {
-            currentOperator = operator.textContent;
-        });
+        operator.addEventListener('click', () => checkCalulationStatus(operator));
     })
+    
+    function checkCalulationStatus(operator) {
+        let test;
+        currentOperator = operator.textContent;
+        if(firstNumber == 0) {
+            firstNumber = parseInt(displayValue);
+        } else if(secondNumber == 0) {
+            secondNumber = parseInt(displayValue); 
+        } else {
+            test = operate(firstNumber,secondNumber,currentOperator);
+        }
+        //console.log(test);
+        displayValue = '';
+        console.log(firstNumber);
+        console.log(secondNumber);
+        console.log(currentOperator);
+    }
 
     //equals event listener
     let equals = document.querySelector('#equals');
@@ -52,7 +70,6 @@ function divide(a, b) {
 }
 
 function operate(firstNumber, secondNumber, currentOperator) {
-    let answer;
     switch(currentOperator) {
         case '+':
             answer = add(firstNumber, secondNumber);
@@ -66,8 +83,12 @@ function operate(firstNumber, secondNumber, currentOperator) {
         case '/':
             answer = divide(firstNumber, secondNumber);
             break;
+        default:
+            //need to alert users somehow
+            //alert("Error: Invalid Operator");
     
     }
+
     return answer;
 }
 

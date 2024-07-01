@@ -6,7 +6,12 @@ let displayValue ='';
 let operators = document.querySelectorAll('.operator');
 let display = document.querySelector('.display');
 
-
+function initialize() {
+    secondNumber = 0;
+    currentOperator = '';
+    answer = 0;
+    displayValue = '';
+}
 
 function populateDisplay(content) {
     displayValue = displayValue + content;
@@ -23,34 +28,39 @@ function addEventListeners() {
 
     //operator event listeners
     operators.forEach(operator => {
-        operator.addEventListener('click', () => checkCalulationStatus(operator));
+        operator.addEventListener('click', () => checkCalulationStatus(operator.textContent));
     })
-    
-    function checkCalulationStatus(operator) {
-        let test;
-        currentOperator = operator.textContent;
-        if(firstNumber == 0) {
-            firstNumber = parseInt(displayValue);
-        } else if(secondNumber == 0) {
-            secondNumber = parseInt(displayValue); 
-        } else {
-            test = operate(firstNumber,secondNumber,currentOperator);
-        }
-        //console.log(test);
-        displayValue = '';
-        console.log(firstNumber);
-        console.log(secondNumber);
-        console.log(currentOperator);
-    }
 
     //equals event listener
     let equals = document.querySelector('#equals');
-    equals.addEventListener('click', () => operate());
+    equals.addEventListener('click', () => {
+        secondNumber = parseInt(displayValue);
+        operate(firstNumber, secondNumber,currentOperator)
+    });
 
     //clear event listener
     let clear = document.querySelector('.clear');
-    clear.addEventListener('click', () => populateDisplay('0'));
+    clear.addEventListener('click', () => {
+        populateDisplay('0');
+        initialize();
+    });
 
+}
+
+function checkCalulationStatus(operator) {
+    currentOperator = operator;
+    if(firstNumber === 0) {
+        firstNumber = parseInt(displayValue);
+        displayValue = '';
+    } else if(secondNumber === 0) {
+        secondNumber = parseInt(displayValue); 
+    } else {
+        displayValue = '';
+        console.log(`First Number: ${firstNumber}`);
+        console.log(`Second Number: ${secondNumber}`);
+        console.log(`Current Operator: ${currentOperator}`);
+        operate(firstNumber,secondNumber,currentOperator);
+    }
 }
 
 function add(a, b) {
@@ -70,6 +80,7 @@ function divide(a, b) {
 }
 
 function operate(firstNumber, secondNumber, currentOperator) {
+    
     switch(currentOperator) {
         case '+':
             answer = add(firstNumber, secondNumber);
@@ -77,19 +88,22 @@ function operate(firstNumber, secondNumber, currentOperator) {
         case '-':
             answer = subtract(firstNumber, secondNumber);
             break;
-        case '*':
+        case 'x':
             answer = multiply(firstNumber, secondNumber);
                 break;
-        case '/':
+        case '÷':
             answer = divide(firstNumber, secondNumber);
             break;
         default:
             //need to alert users somehow
             //alert("Error: Invalid Operator");
+            //answer = "Err: Invalid Operator";
+            console.log("Err: Invalid Operator");
     
     }
+    display.textContent = answer;
+    initialize();
 
-    return answer;
 }
 
 // Add event listeners when the DOM content is loaded

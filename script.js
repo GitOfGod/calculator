@@ -6,6 +6,12 @@ let displayValue ='';
 let operators = document.querySelectorAll('.operator');
 let display = document.querySelector('.display');
 
+/*fix why when you click an operator, it doesnt remove the current display
+fixed the above problem but only works for first calculation, once AC is pressed
+same problem reoccurs */
+
+
+
 function initialize() {
     secondNumber = 0;
     currentOperator = '';
@@ -41,8 +47,15 @@ function addEventListeners() {
     //clear event listener
     let clear = document.querySelector('.clear');
     clear.addEventListener('click', () => {
-        populateDisplay('0');
+        display.textContent = 0;
         initialize();
+        firstNumber = 0;
+        console.log('First number: '+firstNumber);
+        console.log('Second number: '+secondNumber);
+        console.log('Current operator: '+currentOperator);
+        console.log('display value: '+displayValue);
+        console.log('answer: ' + answer);
+    
     });
 
 }
@@ -52,14 +65,18 @@ function checkCalulationStatus(operator) {
     if(firstNumber === 0) {
         firstNumber = parseInt(displayValue);
         displayValue = '';
+        
     } else if(secondNumber === 0) {
         secondNumber = parseInt(displayValue); 
+        display.textContent = secondNumber;
     } else {
-        displayValue = '';
-        console.log(`First Number: ${firstNumber}`);
-        console.log(`Second Number: ${secondNumber}`);
-        console.log(`Current Operator: ${currentOperator}`);
         operate(firstNumber,secondNumber,currentOperator);
+        console.log('First number: '+firstNumber);
+        console.log('Second number: '+secondNumber);
+        console.log('Current operator: '+currentOperator);
+        console.log('display value: '+displayValue);
+        console.log('answer: ' + answer);
+    
     }
 }
 
@@ -95,14 +112,23 @@ function operate(firstNumber, secondNumber, currentOperator) {
             answer = divide(firstNumber, secondNumber);
             break;
         default:
-            //need to alert users somehow
-            //alert("Error: Invalid Operator");
-            //answer = "Err: Invalid Operator";
-            console.log("Err: Invalid Operator");
+            answer = "Err: Invalid Operator";
     
     }
+
+    //initialise figures
     display.textContent = answer;
-    initialize();
+    firstNumber = answer;
+    secondNumber = 0;
+    currentOperator = '';
+    answer = 0;
+    displayValue = '';
+
+    console.log('First number: '+firstNumber);
+    console.log('Second number: '+secondNumber);
+    console.log('Current operator: '+currentOperator);
+    console.log('display value: '+displayValue);
+    console.log('answer: ' + answer);
 
 }
 

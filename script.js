@@ -6,23 +6,19 @@ let displayValue ='';
 let operators = document.querySelectorAll('.operator');
 let display = document.querySelector('.display');
 
-/*fix why when you click an operator, it doesnt remove the current display
-fixed the above problem but only works for first calculation, once AC is pressed
-same problem reoccurs */
-
-
 
 function initialize() {
+    firstNumber = 0;
     secondNumber = 0;
     currentOperator = '';
     answer = 0;
     displayValue = '';
+    display.textContent = 0;
 }
 
 function populateDisplay(content) {
     displayValue = displayValue + content;
     display.textContent = displayValue;
-    //checkCalulationStatus();
 }
 
 function addEventListeners() {
@@ -34,50 +30,51 @@ function addEventListeners() {
 
     //operator event listeners
     operators.forEach(operator => {
-        operator.addEventListener('click', () => checkCalulationStatus(operator.textContent));
+        operator.addEventListener('click', () => {
+            if (displayValue !== '') {
+                if (firstNumber === 0 || currentOperator === '') {
+                    firstNumber = parseInt(displayValue);
+                } else if (secondNumber === 0 && currentOperator) {
+                    secondNumber = parseInt(displayValue);
+                    answer = operate(firstNumber, secondNumber, currentOperator);
+                    firstNumber = answer;
+                    display.textContent = answer;
+                }
+                displayValue = '';
+                secondNumber = 0;
+            }
+            currentOperator = operator.textContent;
+        });
+        
     })
 
     //equals event listener
     let equals = document.querySelector('#equals');
     equals.addEventListener('click', () => {
-        secondNumber = parseInt(displayValue);
-        operate(firstNumber, secondNumber,currentOperator)
+        if (displayValue !== '') {
+            secondNumber = parseInt(displayValue);
+            answer = operate(firstNumber, secondNumber, currentOperator);
+            display.textContent = answer;
+            firstNumber = answer;
+            displayValue = '';
+            secondNumber = 0; // Reset second number
+            currentOperator = '';
+        }
+        
     });
 
     //clear event listener
     let clear = document.querySelector('.clear');
     clear.addEventListener('click', () => {
-        display.textContent = 0;
         initialize();
-        firstNumber = 0;
-        console.log('First number: '+firstNumber);
-        console.log('Second number: '+secondNumber);
-        console.log('Current operator: '+currentOperator);
-        console.log('display value: '+displayValue);
-        console.log('answer: ' + answer);
-    
+        // console.log('First number: '+firstNumber);
+        // console.log('Second number: '+secondNumber);
+        // console.log('Current operator: '+currentOperator);
+        // console.log('display value: '+displayValue);
+        // console.log('answer: ' + answer);
     });
-
-}
-
-function checkCalulationStatus(operator) {
-    currentOperator = operator;
-    if(firstNumber === 0) {
-        firstNumber = parseInt(displayValue);
-        displayValue = '';
-        
-    } else if(secondNumber === 0) {
-        secondNumber = parseInt(displayValue); 
-        display.textContent = secondNumber;
-    } else {
-        operate(firstNumber,secondNumber,currentOperator);
-        console.log('First number: '+firstNumber);
-        console.log('Second number: '+secondNumber);
-        console.log('Current operator: '+currentOperator);
-        console.log('display value: '+displayValue);
-        console.log('answer: ' + answer);
     
-    }
+
 }
 
 function add(a, b) {

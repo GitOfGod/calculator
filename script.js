@@ -36,7 +36,7 @@ function addEventListeners() {
                     firstNumber = parseInt(displayValue);
                 } else if (secondNumber === 0 && currentOperator) {
                     secondNumber = parseInt(displayValue);
-                    answer = (operate(firstNumber, secondNumber, currentOperator)).toFixed(4);
+                    answer = operate(firstNumber, secondNumber, currentOperator);
                     firstNumber = answer;
                     display.textContent = answer;
                 }
@@ -53,9 +53,9 @@ function addEventListeners() {
     equals.addEventListener('click', () => {
         if (displayValue !== '') {
             secondNumber = parseInt(displayValue);
-            answer = (operate(firstNumber, secondNumber, currentOperator)).toFixed(4);
+            answer = operate(firstNumber, secondNumber, currentOperator);
             display.textContent = answer;
-            firstNumber = answer;
+            firstNumber = answer; 
             displayValue = '';
             secondNumber = 0; // Reset second number
             currentOperator = '';
@@ -94,24 +94,28 @@ function divide(a, b) {
 }
 
 function operate(firstNumber, secondNumber, currentOperator) {
-    
+    let temp
     switch(currentOperator) {
         case '+':
-            return add(firstNumber, secondNumber);
+            temp = add(firstNumber, secondNumber);
             break;
         case '-':
-            return subtract(firstNumber, secondNumber);
+            temp = subtract(firstNumber, secondNumber);
             break;
         case 'x':
-            return multiply(firstNumber, secondNumber);
+            temp = multiply(firstNumber, secondNumber);
                 break;
         case '÷':
-            return divide(firstNumber, secondNumber);
+            if (secondNumber !== 0) {
+               temp = divide(firstNumber, secondNumber);
+            } else {
+                alert("You cannot divide by 0. DO BETTER!")
+            }            
             break;
         default:
             return "Err: Invalid Operator";
-    
     }
+    
 }
 
 // Add event listeners when the DOM content is loaded

@@ -86,16 +86,19 @@ function addEventListeners() {
     let clear = document.querySelector('.clear');
     clear.addEventListener('click', () => {
         initialize();
-        // console.log('First number: '+firstNumber);
-        // console.log('Second number: '+secondNumber);
-        // console.log('Current operator: '+currentOperator);
-        // console.log('display value: '+displayValue);
-        // console.log('answer: ' + answer);
     });
-    
+    //Keyboard event listener for number keys
+    document.addEventListener('keydown', handleKeyDown);
 
+}
 
-
+function handleKeyDown(event) {
+    const key = event.key;
+    if (key >= '0' && key <= '9') {
+        populateDisplay(key);
+    } else if (key === '.') {
+        handleDecimalClick();
+    }
 }
 
 function add(a, b) {

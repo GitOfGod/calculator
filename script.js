@@ -63,6 +63,12 @@ function addEventListeners() {
         
     });
 
+    let backspace = document.querySelector('.delete');
+    backspace.addEventListener('click', () => {
+        display.textContent = 0; 
+        displayValue = '';
+    })
+
     //clear event listener
     let clear = document.querySelector('.clear');
     clear.addEventListener('click', () => {
@@ -74,6 +80,8 @@ function addEventListeners() {
         // console.log('answer: ' + answer);
     });
     
+
+
 
 }
 

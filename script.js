@@ -5,7 +5,7 @@ let answer;
 let displayValue ='';
 let operators = document.querySelectorAll('.operator');
 let display = document.querySelector('.display');
-
+let decimal = document.querySelector('#decimal');
 
 function initialize() {
     firstNumber = 0;
@@ -14,9 +14,17 @@ function initialize() {
     answer = 0;
     displayValue = '';
     display.textContent = 0;
+    decimal.addEventListener('click', handleDecimalClick);
+}
+
+function handleDecimalClick() {
+    populateDisplay('.');
 }
 
 function populateDisplay(content) {
+    if(content == ".") {
+        decimal.removeEventListener('click', handleDecimalClick)
+    }
     displayValue = displayValue + content;
     display.textContent = displayValue;
 }
@@ -28,14 +36,17 @@ function addEventListeners() {
         digit.addEventListener('click', () => populateDisplay(digit.textContent));
     })
 
+    //decimal event listener
+    decimal.addEventListener('click', handleDecimalClick);
+
     //operator event listeners
     operators.forEach(operator => {
         operator.addEventListener('click', () => {
             if (displayValue !== '') {
                 if (firstNumber === 0 || currentOperator === '') {
-                    firstNumber = parseInt(displayValue);
+                    firstNumber = parseFloat(displayValue);
                 } else if (secondNumber === 0 && currentOperator) {
-                    secondNumber = parseInt(displayValue);
+                    secondNumber = parseFloat(displayValue);
                     answer = operate(firstNumber, secondNumber, currentOperator);
                     firstNumber = answer;
                     display.textContent = answer;
@@ -44,6 +55,7 @@ function addEventListeners() {
                 secondNumber = 0;
             }
             currentOperator = operator.textContent;
+            decimal.addEventListener('click', handleDecimalClick);
         });
         
     })
@@ -52,7 +64,7 @@ function addEventListeners() {
     let equals = document.querySelector('#equals');
     equals.addEventListener('click', () => {
         if (displayValue !== '') {
-            secondNumber = parseInt(displayValue);
+            secondNumber = parseFloat(displayValue);
             answer = operate(firstNumber, secondNumber, currentOperator);
             display.textContent = answer;
             firstNumber = answer; 
@@ -60,13 +72,14 @@ function addEventListeners() {
             secondNumber = 0; // Reset second number
             currentOperator = '';
         }
-        
+        decimal.addEventListener('click', handleDecimalClick); 
     });
 
     let backspace = document.querySelector('.delete');
     backspace.addEventListener('click', () => {
         display.textContent = 0; 
         displayValue = '';
+        decimal.addEventListener('click', handleDecimalClick);
     })
 
     //clear event listener
@@ -126,6 +139,7 @@ function operate(firstNumber, secondNumber, currentOperator) {
     answer = Math.round(temp * 100000)/100000;
     return answer;
 }
+
 
 // Add event listeners when the DOM content is loaded
 document.addEventListener('DOMContentLoaded', addEventListeners);

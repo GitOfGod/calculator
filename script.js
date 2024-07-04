@@ -36,7 +36,7 @@ function addEventListeners() {
                     firstNumber = parseInt(displayValue);
                 } else if (secondNumber === 0 && currentOperator) {
                     secondNumber = parseInt(displayValue);
-                    answer = operate(firstNumber, secondNumber, currentOperator);
+                    answer = (operate(firstNumber, secondNumber, currentOperator)).toFixed(4);
                     firstNumber = answer;
                     display.textContent = answer;
                 }
@@ -53,7 +53,7 @@ function addEventListeners() {
     equals.addEventListener('click', () => {
         if (displayValue !== '') {
             secondNumber = parseInt(displayValue);
-            answer = operate(firstNumber, secondNumber, currentOperator);
+            answer = (operate(firstNumber, secondNumber, currentOperator)).toFixed(4);
             display.textContent = answer;
             firstNumber = answer;
             displayValue = '';

@@ -115,7 +115,8 @@ function operate(firstNumber, secondNumber, currentOperator) {
         default:
             return "Err: Invalid Operator";
     }
-    
+    answer = Math.round(temp * 100000)/100000;
+    return answer;
 }
 
 // Add event listeners when the DOM content is loaded

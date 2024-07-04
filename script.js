@@ -100,36 +100,21 @@ function operate(firstNumber, secondNumber, currentOperator) {
     
     switch(currentOperator) {
         case '+':
-            answer = add(firstNumber, secondNumber);
+            return add(firstNumber, secondNumber);
             break;
         case '-':
-            answer = subtract(firstNumber, secondNumber);
+            return subtract(firstNumber, secondNumber);
             break;
         case 'x':
-            answer = multiply(firstNumber, secondNumber);
+            return multiply(firstNumber, secondNumber);
                 break;
         case '÷':
-            answer = divide(firstNumber, secondNumber);
+            return divide(firstNumber, secondNumber);
             break;
         default:
-            answer = "Err: Invalid Operator";
+            return "Err: Invalid Operator";
     
     }
-
-    //initialise figures
-    display.textContent = answer;
-    firstNumber = answer;
-    secondNumber = 0;
-    currentOperator = '';
-    answer = 0;
-    displayValue = '';
-
-    console.log('First number: '+firstNumber);
-    console.log('Second number: '+secondNumber);
-    console.log('Current operator: '+currentOperator);
-    console.log('display value: '+displayValue);
-    console.log('answer: ' + answer);
-
 }
 
 // Add event listeners when the DOM content is loaded

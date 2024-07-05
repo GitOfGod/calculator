@@ -1,3 +1,8 @@
+body {
+    font-family: 'Courier New', Courier, monospace;
+    display: block;
+}
+
 .calculator {
     margin: 60px;
     background-color: black;
@@ -7,10 +12,19 @@
     height: 500px;
 }
 
+.display {
+    
+    background-color: #ECF87F;
+    height: 80px;
+    border: 8px solid black;
+    font-size: 40px;
+   
+}
+
 
 
 
 
 button {
-    padding: 30px;
+    padding: 25px;
 }

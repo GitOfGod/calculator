@@ -1,5 +1,6 @@
 html, body {
     font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
     display: flex;
     height: 100%;
     align-items: center;
@@ -23,14 +24,17 @@ html, body {
     height: 80px;
     border: 8px solid black;
     font-size: 70px;
-    font-weight: bold;
+    
    
 }
 
-
-
-
-
 button {
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
     padding: 25px;
+    
+}
+
+.digit {
+    background-color: #81B622;
 }

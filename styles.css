@@ -1,9 +1,13 @@
-body {
+html, body {
     font-family: 'Courier New', Courier, monospace;
-    display: block;
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
 }
 
 .calculator {
+
     margin: 60px;
     background-color: black;
     border: 8px solid #3b3b3b;
@@ -13,11 +17,13 @@ body {
 }
 
 .display {
-    
+    text-align: right;
+    padding: 4px;
     background-color: #ECF87F;
     height: 80px;
     border: 8px solid black;
-    font-size: 40px;
+    font-size: 70px;
+    font-weight: bold;
    
 }
 

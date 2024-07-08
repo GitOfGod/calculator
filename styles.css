@@ -7,8 +7,10 @@ html, body {
     justify-content: center;
 }
 
-.calculator {
 
+.calculator {
+    display: flex;
+    flex-direction: column;
     margin: 60px;
     background-color: black;
     border: 8px solid #3b3b3b;
@@ -28,11 +30,15 @@ html, body {
    
 }
 
+
+
+
+
 button {
     font-family: 'Courier New', Courier, monospace;
     font-weight: bold;
     padding: 25px;
-    
+
 }
 
 .digit {

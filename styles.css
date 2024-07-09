@@ -37,7 +37,12 @@ html, body {
     height: 100%;
 }
 
-
+.operators, .digits, .reset {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 100%;
+}
 
 button {
     font-family: 'Courier New', Courier, monospace;

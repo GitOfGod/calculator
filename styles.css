@@ -22,7 +22,7 @@ html, body {
 .display {
     text-align: right;
     padding: 4px;
-    background-color: #ECF87F;
+    background-color: white;
     height: 80px;
     border: 8px solid black;
     font-size: 70px;    
@@ -48,6 +48,7 @@ html, body {
 button {
     font-family: 'Courier New', Courier, monospace;
     font-weight: bold;
+    background-color: white;
     font-size: 18px;
     padding: 25px;
     margin: 2px;
@@ -56,6 +57,14 @@ button {
     border-radius: 5px;;
 }
 
-.digit {
-    background-color: #81B622;
+.clear, .delete {
+    background-color: #A6E8BB ;
+}
+
+.operator {
+    background-color: #A1F7A1 ;
+}
+
+#equals {
+    background-color:  #05A63A;
 }

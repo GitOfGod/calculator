@@ -16,7 +16,7 @@ html, body {
     border: 8px solid #3b3b3b;
     border-radius: 4px;
     width: 400px;
-    height: 500px;
+    height: 560px;
 }
 
 .display {
@@ -26,7 +26,6 @@ html, body {
     height: 80px;
     border: 8px solid black;
     font-size: 70px;    
-   
 }
 
 .input{
@@ -35,6 +34,8 @@ html, body {
     align-items: center;
     justify-content: space-between;
     height: 100%;
+    padding: 5px;
+    padding-top: 0px;
 }
 
 .operators, .digits, .reset {
@@ -48,9 +49,11 @@ button {
     font-family: 'Courier New', Courier, monospace;
     font-weight: bold;
     font-size: 18px;
-    padding: 23px;
+    padding: 25px;
     margin: 2px;
     flex: 1 1 20%;
+    border: none;
+    border-radius: 5px;;
 }
 
 .digit {
